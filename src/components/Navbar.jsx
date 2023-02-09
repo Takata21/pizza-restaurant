@@ -4,7 +4,7 @@ import React from 'react'
 import { AiOutlinePhone, AiOutlineShoppingCart } from 'react-icons/ai'
 function Navbar() {
   return (
-    <header className="-container h-28 px-12 bg-[#d1411e] sticky top-0">
+    <header className="-container h-28 px-12 bg-[#d1411e] fixed left-0 right-0 z-10 top-0">
       <nav className="flex items-center justify-between h-full">
         <div className="flex items-center flex-1 item ">
           <Link
