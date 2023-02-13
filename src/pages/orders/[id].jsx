@@ -9,12 +9,12 @@ function Orders_() {
     if (index - status > 1) return styles.undone
   }
   return (
-    <div className="-container p-12 flex">
+    <div className="-container p-12 flex sm:flex-col">
       <div className="-left flex-[2]">
         <div className="-row">
           <table className="-table w-full text-left mb-12">
             <thead>
-              <tr className="-trTitle">
+              <tr className="-trTitle sm:hidden">
                 <th>Order ID</th>
                 <th>Customer</th>
                 <th>Address</th>
@@ -22,25 +22,33 @@ function Orders_() {
               </tr>
             </thead>
             <tbody>
-              <tr className="-tr">
+              <tr className="-tr sm:flex sm:flex-col sm:justify-center sm:items-center sm:text-xl">
                 <td>
-                  <span className="-id">129837819237</span>
+                  <span className="-id sm:before:content-['Order:'] sm:before:font-medium sm:before:mr-1">
+                    129837819237
+                  </span>
                 </td>
                 <td>
-                  <span className="-name">John Doe</span>
+                  <span className="-name sm:before:content-['Customer:'] sm:before:font-medium sm:before:mr-1">
+                    John Doe
+                  </span>
                 </td>
                 <td>
-                  <span className="-address">Elton st. 212-33 LA</span>
+                  <span className="-address sm:before:content-['Direction:'] sm:before:font-medium sm:before:mr-1">
+                    Elton st. 212-33 LA
+                  </span>
                 </td>
                 <td>
-                  <span className="-total">$79.80</span>
+                  <span className="-total sm:before:content-['Total:'] sm:before:font-medium sm:before:mr-1">
+                    $79.80
+                  </span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="-row flex justify-around">
-          <div className="">
+        <div className="-row flex justify-around sm:flex-col sm:items-center sm:justify-center">
+          <div className={styles.done}>
             <Image src="/img/paid.png" width={30} height={30} alt="" />
             <span>Payment</span>
             <div className="checkedIcon">
@@ -95,7 +103,7 @@ function Orders_() {
         </div>
       </div>
       <div className="-right flex-1">
-        <div className="-wrapper w-[90%] max-h-[300px] bg-[#333] p-12 pt-3 flex flex-col justify-between text-whit">
+        <div className="-wrapper w-[90%] max-h-[300px] bg-[#333] p-12 pt-3 flex flex-col justify-between text-white sm:m-auto sm:w-full">
           <h2 className="-title">CART TOTAL</h2>
           <div className="-totalText">
             <b className="-totalTextTitle ml-3">Subtotal:</b>$79.60

@@ -11,20 +11,20 @@ function Product() {
     dec: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt recusandae tenetur dolorum, ex ipsum dolorem! Eos eligendi quis impedit vel.',
   }
   return (
-    <section className="h-[calc(100vh_-_100px)] flex">
+    <section className="h-[calc(100vh_-_100px)] flex sm:h-auto sm:text-center sm:flex-col sm:mt-5">
       <section className="flex items-center justify-center flex-1 h-full -left">
-        <div className="-imgContainer w-[80%] h-[80%] relative">
+        <div className="-imgContainer w-[80%] h-[80%] relative sm:w-[70vw] sm:h-[70vw]">
           <Image src={pizza.img} fill alt="" />
         </div>
       </section>
       <section className="flex-1 p-5 -right">
-        <h1 className="my-4 text-3xl font-bold -title">{pizza.name}</h1>
+        <h1 className="my-4 text-3xl font-bold -title sm:m-1">{pizza.name}</h1>
         <span className="-price text-[#d1411e] text-2xl font-normal border-b border-[#d1411e] my-3 inline-block">
           ${pizza.price[size]}
         </span>
         <p className="-desc">{pizza.dec}</p>
         <h3 className="my-4 text-2xl font-bold -choose">Choose the size</h3>
-        <div className="flex justify-between w-2/5 -sizes">
+        <div className="flex justify-between w-2/5 -sizes sm:w-full sm:px-5">
           <button className="relative w-8 h-8 -size" onClick={() => setSize(0)}>
             <Image src="/img/size.png" fill alt="" />
             <span className="-number flex justify-center items-center absolute top-[-5px] text-xs right-[-20px] text-white px-1 rounded-xl bg-teal-500">
@@ -53,21 +53,21 @@ function Product() {
         <h3 className="my-4 text-2xl font-bold -choose">
           Choose additional ingredients
         </h3>
-        <div className="flex mb-8 -ingredients">
-          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option">
+        <div className="flex mb-8 -ingredients sm:flex-col">
+          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option sm:m-3 sm:text-lg">
             <input
               type="checkbox"
               id="double"
               name="double"
-              className="w-5 h-5 -checkbox"
+              className="w-5 h-5 -checkbox sm:w-6 sm:h-6"
             />
             <label className="select-none" htmlFor="double">
               Double Ingredients
             </label>
           </div>
-          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option">
+          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option sm:m-3 sm:text-lg">
             <input
-              className="w-5 h-5 -checkbox"
+              className="w-5 h-5 -checkbox sm:w-6 sm:h-6"
               type="checkbox"
               id="cheese"
               name="cheese"
@@ -76,9 +76,9 @@ function Product() {
               Extra Cheese
             </label>
           </div>
-          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option">
+          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option sm:m-3 sm:text-lg">
             <input
-              className="w-5 h-5 -checkbox"
+              className="w-5 h-5 -checkbox sm:w-6 sm:h-6"
               type="checkbox"
               id="spicy"
               name="spicy"
@@ -87,9 +87,9 @@ function Product() {
               Spicy Sauce
             </label>
           </div>
-          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option">
+          <div className="flex items-center gap-2 mr-3 text-sm font-medium -option sm:m-3 sm:text-lg">
             <input
-              className="w-5 h-5 -checkbox"
+              className="w-5 h-5 -checkbox sm:w-6 sm:h-6"
               type="checkbox"
               id="garlic"
               name="garlic"
@@ -99,13 +99,13 @@ function Product() {
             </label>
           </div>
         </div>
-        <div className="flex items-center -add">
+        <div className="flex items-center -add sm:justify-center">
           <input
             type="number"
             defaultValue={1}
-            className="w-12 -quantity h-7"
+            className="w-12 -quantity h-7 sm:h-12 sm:px-5 sm:py-3"
           />
-          <button className="-button p-2 flex items-center justify-center rounded-sm h-7 ml-3 bg-[#d1411e] text-white border-none font-medium">
+          <button className="-button p-2 flex items-center justify-center rounded-sm h-7 ml-3 bg-[#d1411e] text-white border-none font-medium sm:h-12 sm:px-5 sm:py-3">
             Add to Cart
           </button>
         </div>

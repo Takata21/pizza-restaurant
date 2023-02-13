@@ -29,7 +29,16 @@
     opacity: 0.3;
 }
 
-.undone .checkedIcon,
+.undone.checkedIcon,
 .inProgress .checkedIcon {
     display: none;
+}
+
+@media screen and (max-width:480px) {
+
+    .done,
+    .inProgress,
+    .undone {
+        margin-bottom: 20px;
+    }
 }

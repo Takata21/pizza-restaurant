@@ -4,21 +4,21 @@ import React from 'react'
 import { AiOutlinePhone, AiOutlineShoppingCart } from 'react-icons/ai'
 function Navbar() {
   return (
-    <header className="-container h-28 px-12 bg-[#d1411e] fixed left-0 right-0 z-10 top-0">
+    <header className="-container h-28 px-12 bg-[#d1411e] fixed left-0 right-0 z-10 top-0 ">
       <nav className="flex items-center justify-between h-full">
-        <div className="flex items-center flex-1 item ">
+        <div className="flex items-center flex-[3] item">
           <Link
             href="/"
             className="flex items-center justify-center w-12 h-12 bg-white rounded-full"
           >
             <AiOutlinePhone size={32} color="#d1411e" />
           </Link>
-          <div className="ml-5 text-white -text">
+          <div className="items-center ml-5 text-white -text sm:flex sm:flex-col">
             <p className="text-xs font-medium">ORDER NOW</p>
             <p className="text-xl font-bold">012 345</p>
           </div>
         </div>
-        <div className="item flex items-center flex-[3] -center">
+        <div className="item flex items-center flex-[3] -center sm:hidden ">
           <ul className="flex items-center text-white">
             <li className="mx-5 font-medium ">Homepage</li>
             <li className="mx-5 font-medium ">Products</li>
