@@ -7,7 +7,7 @@ import PizzaList from '@/components/PizzaList'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ pizzaList }) {
   return (
     <>
       <Head>
@@ -17,7 +17,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Slider />
-      <PizzaList />
+      <PizzaList pizzaList={pizzaList} />
     </>
   )
+}
+
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:3000/api/products')
+  const data = await res.json()
+  console.log(data)
+  return {
+    props: {
+      pizzaList: data,
+    },
+  }
 }
