@@ -2,7 +2,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import { AiOutlinePhone, AiOutlineShoppingCart } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
 function Navbar() {
+  const quantity = useSelector((state) => state.cart.quantity)
   return (
     <header className="-container h-28 px-12 bg-[#d1411e] fixed left-0 right-0 z-10 top-0 ">
       <nav className="flex items-center justify-between h-full">
@@ -31,12 +33,15 @@ function Navbar() {
             <li className="mx-5 font-medium ">Contact</li>
           </ul>
         </div>
-        <button className="relative flex items-center justify-end flex-1 item -right">
+        <Link
+          href="/cart"
+          className="relative flex items-center justify-end flex-1 item -right"
+        >
           <AiOutlineShoppingCart size={30} color="#fff" />
           <span className="absolute top-[-10px] right-[-10px]  font-semibold w-5 h-5 rounded-full flex justify-center items-center bg-white text-[#d1411e]">
-            2
+            {quantity}
           </span>
-        </button>
+        </Link>
       </nav>
     </header>
   )

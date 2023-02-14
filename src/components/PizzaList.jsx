@@ -1,7 +1,7 @@
 import React from 'react'
 import PizzaCard from './PizzaCard'
 
-function PizzaList() {
+function PizzaList({ pizzaList }) {
   return (
     <div className="flex flex-col items-center px-3 py-5 -container font-bold">
       <h1 className="text-3xl -title sm:text-center">THE BEST PIZZA IN TOWN</h1>
@@ -13,14 +13,9 @@ function PizzaList() {
         asperiores minus ipsa ab.
       </p>
       <div className="-wrapper flex items-center justify-center w-full flex-wrap">
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
-        <PizzaCard />
+        {pizzaList.map((pizza) => (
+          <PizzaCard pizza={pizza} key={pizza.id} />
+        ))}
       </div>
     </div>
   )
