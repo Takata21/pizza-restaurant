@@ -7,15 +7,39 @@ import {
   PayPalButtons,
   usePayPalScriptReducer,
 } from '@paypal/react-paypal-js'
+import { useRouter } from 'next/router'
+import { reset } from '../redux/cartSlice'
 
 function Cart() {
   const [open, setOpen] = useState(false)
+  const [cash, setCash] = useState(false)
   // This values are the props in the UI
-  const amount = '2'
+  const cart = useSelector((state) => state.cart)
+  const amount = cart.total
   const currency = 'USD'
   const style = { layout: 'vertical' }
   const dispatch = useDispatch()
-  const cart = useSelector((state) => state.cart)
+  const router = useRouter()
+
+  const createOrder = async (data) => {
+    try {
+      const res = await fetch('http://localhost:3000/api/orders', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      console.log(res)
+      const response = await res.json()
+      console.log(response)
+      res.status === 201 && router.push(`/orders/${response._id}`)
+      dispatch(reset())
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   // Custom component to wrap the PayPalButtons and handle currency changes
   const ButtonWrapper = ({ currency, showSpinner }) => {
@@ -59,8 +83,14 @@ function Cart() {
               })
           }}
           onApprove={function (data, actions) {
-            return actions.order.capture().then(function () {
-              // Your code here after capture the order
+            return actions.order.capture().then(function (details) {
+              const shipping = details.purchase_units[0].shipping
+              createOrder({
+                customer: shipping.name.full_name,
+                address: shipping.address.address_line_1,
+                total: cart.total,
+                method: 1,
+              })
             })
           }}
         />
@@ -84,7 +114,7 @@ function Cart() {
           <tbody>
             {cart.products.map((product) => (
               <tr
-                className="-tr pt-5 sm:flex sm:flex-col sm:text-center sm:mb-5"
+                className="pt-5 -tr sm:flex sm:flex-col sm:text-center sm:mb-5"
                 key={product._id}
               >
                 <td className="pb-5">
@@ -133,17 +163,20 @@ function Cart() {
         <div className="-wrapper w-[90%] max-h-[300px] bg-[#333] p-12 pt-3 flex flex-col justify-between text-white sm:m-auto">
           <h2 className="-title">CART TOTAL</h2>
           <div className="-totalText">
-            <b className="-totalTextTitle ml-3">Subtotal:</b>${cart.total}
+            <b className="ml-3 -totalTextTitle">Subtotal:</b>${cart.total}
           </div>
           <div className="-totalText">
-            <b className="-totalTextTitle ml-3">Discount:</b>$0.00
+            <b className="ml-3 -totalTextTitle">Discount:</b>$0.00
           </div>
           <div className="-totalText">
-            <b className="-totalTextTitle ml-3">Total:</b>${cart.total}
+            <b className="ml-3 -totalTextTitle">Total:</b>${cart.total}
           </div>
           {open ? (
-            <div className="flex mt-3 flex-col">
-              <button className="p-2 mb-1 text-teal-500 bg-white font-bold">
+            <div className="flex flex-col mt-3">
+              <button
+                className="p-2 mb-1 font-bold text-teal-500 bg-white"
+                onClick={() => setCash(!cash)}
+              >
                 CASH ON DELIVERY
               </button>
               <PayPalScriptProvider
