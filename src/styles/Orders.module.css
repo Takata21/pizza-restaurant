@@ -29,7 +29,7 @@
     opacity: 0.3;
 }
 
-.undone.checkedIcon,
+.undone .checkedIcon,
 .inProgress .checkedIcon {
     display: none;
 }
