@@ -9,6 +9,7 @@ import {
 } from '@paypal/react-paypal-js'
 import { useRouter } from 'next/router'
 import { reset } from '../redux/cartSlice'
+import OrderDetail from '@/components/OrderDetail'
 
 function Cart() {
   const [open, setOpen] = useState(false)
@@ -187,6 +188,7 @@ function Cart() {
                   currency: 'USD',
                   'disable-funding': 'credit,card,p24',
                 }}
+                className="z-10"
               >
                 <ButtonWrapper currency={currency} showSpinner={false} />
               </PayPalScriptProvider>
@@ -201,6 +203,7 @@ function Cart() {
           )}
         </div>
       </div>
+      {cash && <OrderDetail total={cart.total} createOrder={createOrder} />}
     </div>
   )
 }
