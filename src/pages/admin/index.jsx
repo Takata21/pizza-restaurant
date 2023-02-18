@@ -120,7 +120,16 @@ function Admin({ orders, products }) {
     </section>
   )
 }
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  const myCookie = ctx.req?.cookies || ''
+  if (myCookie.token !== process.env.TOKEN) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
   const productsRes = await fetch('http://localhost:3000/api/products')
   const productsList = await productsRes.json()
   const orderRes = await fetch('http://localhost:3000/api/orders')

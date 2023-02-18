@@ -22,7 +22,9 @@ function Navbar() {
         </div>
         <div className="item flex items-center flex-[3] -center sm:hidden ">
           <ul className="flex items-center text-white">
-            <li className="mx-5 font-medium ">Homepage</li>
+            <Link href="/">
+              <li className="mx-5 font-medium ">Homepage</li>
+            </Link>
             <li className="mx-5 font-medium ">Products</li>
             <li className="mx-5 font-medium ">Menu</li>
             <div className="flex items-center justify-center w-40 h-16">
