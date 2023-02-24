@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       res.status(200).json(products)
     } catch (err) {
       console.log(err)
-      res.status(500)
+      res.status(error)
     }
   }
   if (method === 'POST') {
